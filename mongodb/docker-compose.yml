@@ -1,0 +1,18 @@
+services:
+  mongo:
+    container_name: auth_mongo
+    # build: ./mongo/
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    volumes:
+      - "./data:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always
+networks:
+  default:
+version: '3.2'

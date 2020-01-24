@@ -1,0 +1,7 @@
+{
+    "name": "Node-Microservice-Lambda-Boilerplate",
+    "script": "./src/server.js",
+    "env": {
+      "PORT": 5000
+    }
+  }

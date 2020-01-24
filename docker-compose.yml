@@ -1,0 +1,36 @@
+services:
+  mongo:
+    container_name: auth_mongo
+    # build: ./mongo/
+    image: mongo
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    volumes:
+      - "./mongodb/data:/data/db"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: 93B6c9R49t
+    restart: always
+
+  redis:
+    container_name: auth_redis
+    expose:
+      - 6379
+    image: redis:alpine
+    ports:
+      - 6379:6379
+
+  auth:
+    container_name: auth_api
+    build:
+      context: .
+      dockerfile: Dockerfile${ENV}
+    volumes:
+      - "./src:/app/src"
+    ports:
+      - "5000:5000"
+networks:
+  default:
+version: '3.2'
